@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+ <title>Program-2: Shopping List</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body bgcolor="gray" text="black" > 
+ 
+<center>
+    <h1> Program-2 </h1> 
+    <h1>Develop an Angular JS application that displays a list of shopping items. Allow users to add and 
+    remove items from the list using directives and controllers.
+    Note: The default values of items may 
+    be included in the program
+    </h1> 
+</center> 
+<hr> 
+<body ng-controller="MyController">
+    
+    <h1>Shopping List</h1>
+ 
+
+ <label for="itemInput">Enter products into the List:</label>
+ <input type="text" ng-model="newItem">
+ <button ng-click="addItem()"> Add Item </button>
+ <table> 
+    <tr ng-repeat="item in itemList">
+    <td>{{ item }}</td>
+    <td> <button ng-click="removeItem($index)"> Remove </button> </td>
+    </tr>
+ </table>
+
+ <script>
+    var app = angular.module('myApp', []);
+    app.controller('MyController', function ($scope) 
+    { 
+    // Initialize an empty array to store items
+        $scope.itemList = []; 
+      
+    // Default values for shopping items
+        $scope.itemList = ['Apples', 'Biscuits', 'Bread', 'Milk'];
+        
+        $scope.addItem = function () 
+        {
+            if ($scope.newItem) 
+            {
+                $scope.itemList.push($scope.newItem);
+                $scope.newItem = ''; // Clear the input field
+            }
+        };
+    // Function to remove an item
+        $scope.removeItem = function (index) 
+        {
+        $scope.itemList.splice(index, 1);
+        };
+    });
+ </script> 
+ 
+</body> 
+</html>
